@@ -1,0 +1,23 @@
+{
+  "name": "node-mongodb-crud",
+  "version": "1.0.0",
+  "description": "Node-MongoDB RestAPI service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Karthickd94@outlook.com",
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.11",
+    "node-uuid": "^1.4.8"
+  }
+}
