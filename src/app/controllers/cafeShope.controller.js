@@ -65,7 +65,7 @@ exports.findOne = (req, res) => {
 // Update a cafe identified by the id in the request
 exports.update = (req, res) => {
 // Validate Request
-    if(!req.body.content) {
+    if(!req.body) {
         return res.status(400).send({
             message: "Cafe content can not be empty"
         });
@@ -73,8 +73,10 @@ exports.update = (req, res) => {
 
     // Find cafe and update it with the request body
     Cafe_shope.findByIdAndUpdate(req.params.id, {
-        title: req.body.title || "Untitled Cafe",
-        content: req.body.content
+        name: req.body.name,
+        description: req.body.description,
+        location: req.body.location
+        
     }, {new: true})
     .then(cafe => {
         if(!cafe) {

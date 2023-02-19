@@ -14,7 +14,7 @@ exports.create = (req, res) => {
             email_address: req.body.email_address,
             phone_number: req.body.phone_number,
             gender: req.body.gender,
-        
+            cafeID: req.body.cafeID
         });
     // Save Array in the database
     data.save()
@@ -30,6 +30,17 @@ exports.create = (req, res) => {
 // Retrieve and return all employee from the database.
 exports.findAll = (req, res) => {
     Employee.find()
+    .then(employees => {
+        res.send(employees);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving employees."
+        });
+    });
+};
+
+exports.findAllemp = (req, res) => {
+    Employee.find({cafeID:req.params.id})
     .then(employees => {
         res.send(employees);
     }).catch(err => {
@@ -63,8 +74,6 @@ exports.findOne = (req, res) => {
 
 // Update a employee identified by the id in the request
 exports.update = (req, res) => {
-// Validate Request
-// console.log()
     if(!req.body) {
         return res.status(400).send({
             message: "employee content can not be empty"
@@ -76,7 +85,8 @@ exports.update = (req, res) => {
         name: req.body.name , 
         email_address: req.body.email_address,
         phone_number: req.body.phone_number,
-        gender: req.body.gender
+        gender: req.body.gender,
+        cafeID: req.body.cafeID
     }, {new: true})
     .then(employee => {
         if(!employee) {

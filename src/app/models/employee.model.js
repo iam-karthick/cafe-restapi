@@ -1,17 +1,22 @@
 const mongoose = require('mongoose');
-function randomString(length, chars) {
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-    return result;
+
+function randomStr(len, arr) {
+    var ans = '';
+    for (var i = len; i > 0; i--) {
+        ans +=
+        arr[Math.floor(Math.random()*arr.length)];
+    }
+    return ans;
 }
-var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+var rString = randomStr(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
 const EmployeeSchema = mongoose.Schema({
     _id: { type: String, default:"UI"+rString.substring(0,10)},
     name: String,
     email_address: String,
     phone_number: Number,
-    gender: String
+    gender: String,
+    cafeID: String
 }, {
     timestamps: true
 });
